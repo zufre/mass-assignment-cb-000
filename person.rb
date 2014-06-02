@@ -2,6 +2,7 @@ class Person
   def initialize(**kwargs)
     kwargs.each_pair do |method, value|
       create_accessors(method, value)
+      public_send("#{method}=", value)
     end
   end
 
@@ -16,6 +17,5 @@ class Person
         instance_variable_get("@#{method}")
       end
     end
-    public_send("#{method}=", value)
   end
 end
